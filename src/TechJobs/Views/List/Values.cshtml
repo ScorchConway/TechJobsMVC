@@ -5,6 +5,30 @@
 {
     <tr class="@( i % 2 == 0 ? "even" : "odd" ) ">
         <td><a asp-controller="List" asp-action="Jobs" asp-route-column="@ViewBag.column" asp-route-value="@ViewBag.items[i]">@ViewBag.items[i]</a></td>
-    </tr>  
+    </tr>
 }   
 </table>
+
+@if (ViewBag.Jobs != null)
+{
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Skill</th>
+        <th>Employer</th>
+        <th>Location</th>
+        <th>Position Type</th>
+    </tr>
+    @{int j = 0; }
+    @foreach (Dictionary<string, string> job in ViewBag.jobs)
+    {
+        <tr class="@( j % 2 == 0 ? "even" : "odd" ) ">
+            @foreach (KeyValuePair<string, string> kv in job)
+            {
+                <td>@kv.Value</td>
+            }
+        </tr>
+        j++;
+    }
+</table>
+}
